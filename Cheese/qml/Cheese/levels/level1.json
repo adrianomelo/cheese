@@ -1,0 +1,14 @@
+{
+    "holes": [
+        {"x": 45, "y": 70, "type": 1},
+        {"x": 245, "y": 170, "type": 2}
+    ],
+    "minScore": 2,
+    "hp": 100,
+    "timeline": [
+        {"time": 5, "enemy": "Rat", "hole": 0},
+        {"time": 10, "enemy": "Rat", "hole": 0},
+        {"time": 10, "enemy": "Rat", "hole": 1},
+        {"time": 20, "enemy": "Rat", "hole": 1}
+    ]
+}
