@@ -16,7 +16,7 @@ function nextLevel() {
         cheese.z = topCheese.z - 1;
         gameScene.focusOn(topCheese);
     } else {
-        cheese.topBaseline = 50;
+        cheese.topBaseline = 60;
     }
 
     cheese.fall();
