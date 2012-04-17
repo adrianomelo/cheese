@@ -20,8 +20,9 @@ Presentation {
 
         content: [
             "Javascript++",
-            "Mainloop, Eventos, Schedule",
+            "Main loop",
             "Sprites",
+            "Eventos",
             "Viewport",
             "Landscape",
             "Gerenciando Recursos"
@@ -79,115 +80,262 @@ function init() {
         }
     }
 
+//     RegularSlide {
+//         title: "Javascript"
+//         CodeSection {
+//             anchors.left: parent.left
+//             width: 1000
+//             text: '
+// var enemies = [];
+// var enemyComponent = Qt.createComponent("Enemy.qml");
+
+// function initLevel() {
+//     var enemy = enemyComponent.createObject(item);
+//     enemy.x = Math.random() *
+//         (item.width - enemy.width);
+//     enemy.y = Math.random() *
+//         (item.height - enemy.height);
+//     enemies.push(enemy);
+// }
+// '
+//         }
+//     }
+
+    // RegularSlide {
+    //     title: "Main loop"
+    //     content: [
+    //         "Padrão para tratamento de eventos",
+    //         "Qt mainloop vs. Game mainloop",
+    //         ""
+    //     ]
+    // }
+
+//     RegularSlide {
+//         title: "Main loop"
+//         CodeSection {
+//             anchors {
+//                 left: parent.left
+//                 right: enginejscode.left
+//                 rightMargin: 40
+//             }
+//             text: '
+// import QtQuick 1.1
+// import "engine.js" as Engine
+
+// Timer {
+//     running: gameScene.state == "play"
+//     onTriggered: Engine.tick();
+// }
+// '
+//         }
+
+//         CodeSection {
+//             id: enginejscode
+//             anchors.right: parent.right
+//             text: '
+// function tick() {
+//     for (var i in enemies) {
+//         var enemy = enemies[i];
+//         if (enemy.hp > 0) {
+//             enemy.tick();
+//         } else {
+//             enemies.splice(i, 1); // Remove
+//             enemy.destroy();
+//         }
+//     }
+// }
+// '
+//         }
+//    }
+
+//     RegularSlide {
+//         title: "Sprites"
+//         CodeSection {
+//             anchors.left: parent.left
+//             text: '
+// // Rat.qml
+// import QtQuick 1.1
+
+// Sprite {
+//     width: 80
+//     height: 80
+//     spriteState: "normal"
+//     spriteStates: {"normal": ["red", "tomato"]}
+
+//     property Item cheese
+//     property int hp: 5
+//     property int strength: 1
+
+//     onTicked: {
+//         if (!mouse.containsMouse)
+//             cheese.hp -= strength;
+//     }
+
+//     MouseArea {
+//         // Interaction here
+//     }
+// }
+// '
+//         }
+//     }
+
+
+//     RegularSlide {
+//         title: "Sprites"
+//         CodeSection {
+//             anchors.left: parent.left
+//             text: '
+// // Sprite.qml
+// import QtQuick 1.1
+
+// Rectangle {
+//     property int index: 0
+//     property string spriteState: ""
+//     property variant spriteStates: {"":[]}
+
+//     color: spriteStates[spriteState][index]
+
+//     signal ticked()
+
+//     function tick() {
+//         index = (index + 1) %
+//             spriteStates[spriteState].length;
+//         ticked();
+//     }
+// }
+// '
+//         }
+//     }
+
     RegularSlide {
-        title: "Javascript"
+        title: "Eventos - Lendo de arquivo"
         CodeSection {
             anchors.left: parent.left
-            width: 1000
             text: '
-var enemies = [];
-var enemyComponent = Qt.createComponent("Enemy.qml");
+function readLevelData(level, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "levels/level" + level + ".json");
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState != 4 && xhr.responseText == "")
+            return;
 
-function initLevel() {
-    var enemy = enemyComponent.createObject(item);
-    enemy.x = Math.random() *
-        (item.width - enemy.width);
-    enemy.y = Math.random() *
-        (item.height - enemy.height);
-    enemies.push(enemy);
+        callback(JSON.parse(xhr.responseText));
+    }
 }
 '
         }
     }
+
+//     RegularSlide {
+//         title: "Eventos - Inicializando Level"
+//         CodeSection {
+//             anchors.centerIn parent
+//             text: '
+// var enemySet = {
+//     "Rat": Qt.createComponent("enemies/Rat.qml")
+// };
+
+// var holes = [];
+// var enemies = [];
+// var tickCount = 0;
+// var timeline = [];
+// var timelineIndex = 0;
+
+// function init(level) {
+//     cheese.level = level;
+//     tickCount = 0;
+
+//     readLevelData(level, function (levelData) {
+//         for (var i in levelData.holes) {
+//             var hole = levelData.holes[i];
+//             addHole(hole.x, hole.y, hole.type);
+//         }
+
+//         timeline = levelData.timeline;
+//         timelineIndex = 0;
+//         cheese.hp = levelData.hp;
+//     });
+// }'
+//         }
+//     }
 
     RegularSlide {
-        title: "Main loop"
-        content: [
-            "Padrão para tratamento de eventos",
-            "Qt mainloop vs. Game mainloop",
-            ""
-        ]
+        title: "Eventos - Executando eventos"
+//         CodeSection {
+//             anchors.centerIn parent
+//             text: '
+// function tick() {
+//     tickCount++;
+
+//     if (timelineIndex >= timeline.length && !enemies.length) {
+//         cheese.timeUp();
+//         return;
+//     }
+
+//     while (timelineIndex < timeline.length &&
+//            timeline[timelineIndex].time <= tickCount) {
+//         onEvent(timeline[timelineIndex]);
+//         timelineIndex++;
+//     }
+
+//     for (var i in enemies) {
+//         var enemy = enemies[i];
+//         if (enemy.hp > 0) {
+//             enemy.tick();
+//         } else {
+//             enemies.splice(i, 1); // Remove
+//             enemy.destroy();
+//         }
+//     }
+// }
+// '
+//         }
     }
 
-    RegularSlide {
-        title: "Main loop"
-        CodeSection {
-            anchors.left: parent.left
-            text: '
-import QtQuick 1.1
-import "engine.js" as Engine
-
-Timer {
-    running: gameScene.state == ""
-    onTriggered: Engine.tick();
-}
-'
-        }
-    }
-
-
-    RegularSlide {
-        title: "Main loop"
-        CodeSection {
-            anchors.left: parent.left
-            text: '
-import QtQuick 1.1
-import "engine.js" as Engine
-
-Timer {
-    running: gameScene.state == ""
-    onTriggered: Engine.tick();
-}
-'
-        }
-        CodeSection {
-            anchors.right: parent.right
-            text: '
-function tick() {
-    for (var i in enemies) {
-        var enemy = enemies[i];
-        if (enemy.hp > 0) {
-            enemy.tick();
-        } else {
-            enemies.splice(i, 1); // Remove
-            enemy.destroy();
-        }
-    }
-}
-'
-        }
-    }
+//     RegularSlide {
+//         title: "Eventos - Executando eventos"
+//         CodeSection {
+//             anchors.centerIn parent
+//             text: '
+// function onEvent(event) {
+//     if ("enemy" in event) {
+//         var enemy = enemySet[event.enemy].createObject(holes[event.hole]);
+//         enemies.push(enemy);
+//         enemy.cheese = cheese;
+//     }
+// }
+// '
+//         }
+//     }
 
     RegularSlide {
         title: "Viewport"
         content: ["Mostrar", "Flickable"]
     }
 
-    RegularSlide {
-        CodeSection {
-            id: code
-            anchors.left: parent.left
-            text: 'import QtQuick 1.1
+//     RegularSlide {
+//         CodeSection {
+//             id: code
+//             anchors.left: parent.left
+//             text: 'import QtQuick 1.1
 
-Rectangle {
-    width:100
-    height: 100
-    color: "green"
-}'
-            Component.onCompleted: Qt.createQmlObject(text, loadArea)
-        }
-        Item {
-            id: loadArea
-            anchors {
-                right: parent.right
-                margins: 100
-            }
-        }
-    }
+// Rectangle {
+//     width:100
+//     height: 100
+//     color: "green"
+// }'
+//             Component.onCompleted: Qt.createQmlObject(text, loadArea)
+//         }
+//         Item {
+//             id: loadArea
+//             anchors {
+//                 right: parent.right
+//                 margins: 100
+//             }
+//         }
+//     }
 
-    RegularSlide {
-        
-    }
 
     DividerSlide {
         centeredText: "Idéia!"
