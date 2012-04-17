@@ -395,31 +395,106 @@ function tick() {
             anchors.centerIn: parent
             width: parent.width
             text: '
-function tick() {
-    tickCount++;
+// GameScene.qml
+import QtQuick 1.1
+import "engine.js" as Engine
 
-    if (timelineIndex >= timeline.length && !enemies.length) {
-        cheese.timeUp();
-        return;
+Item {
+    id: gameScene
+
+    property alias running: timer.running
+    property bool paused: false
+    property int currentLevel: 0
+
+    signal gameOver()
+
+    onGameOver: Engine.reset();
+
+    function init() { Engine.nextLevel(); }
+
+    Timer {
+        id: timer
+        interval: 500
+        running: false
+        repeat: true
+        onTriggered: Engine.tick();
     }
-
-    ...
-'
+}'
         }
     }
 
-
     RegularSlide {
-        title: "Viewport"
-        content: ["Mostrar", "Flickable"]
+        title: "Win/Lose"
+        CodeSection {
+            anchors.centerIn: parent
+            width: parent.width
+            text: '
+var cheeseComponent = Qt.createComponent("Cheese.qml");
+var holeComponent = Qt.createComponent("Hole.qml");
+
+function nextLevel() {
+    gameScene.currentLevel += 1;
+
+    var cheese = cheeseComponent.createObject(world);
+    if (cheeseStack.length >= 1) {
+        var topCheese = cheeseStack[cheeseStack.length - 1];
+        gameScene.focusOn(topCheese);
+    } else {
+        cheese.topBaseline = 60;
+    }
+
+    cheese.fall();
+    cheeseStack.push(cheese);
+    cheese.init(gameScene.currentLevel);
+    currentCheese = cheese;
+    cheese.gameOver.connect(gameScene.gameOver);
+    cheese.timeUp.connect(nextLevel);
+
+    return cheese;
+}
+'
+	}
+    }
+    
+    RegularSlide {
+        title: "Win/Lose"
+        CodeSection {
+            anchors.centerIn: parent
+            width: parent.width
+            text: '// MainWindow.qml
+State {
+    name: "gameplay"
+    PropertyChanges { target: score; opacity: 1 }
+    PropertyChanges { target: playPauseButton; opacity: 1 }
+    PropertyChanges { target: game; running: true }
+}
+...
+
+GameScene {
+    id: game
+    anchors.fill: parent
+    running: false
+    onGameOver: root.state = "game-over"
+}
+...
+
+PlayPauseButton {
+    id: playPauseButton
+    onClicked: {
+        if (root.state == "pause") root.state = "gameplay";
+        else root.state = "pause";
+    }
+}
+'
+	}
     }
 
     DividerSlide {
-        centeredText: "Idéia!"
-    }
-
-    RegularSlide {
         centeredText: "Perguntas?"
+    }
+    
+    DividerSlide {
+        centeredText: "Idéias?"
     }
 
     RegularSlide {
