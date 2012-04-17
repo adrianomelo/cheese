@@ -1,15 +1,16 @@
 import QtQuick 1.1
 
-Rectangle {
+Sprite {
     width: 80
     height: 80
-    color: mouse.containsMouse ? "yellow" : "green"
+    spriteState: 'normal'
+    spriteStates: {'normal': ["red", "tomato"]}
 
     property Item cheese
     property int hp: 5
     property int strength: 1
 
-    function tick() {
+    onTicked: {
         if (!mouse.containsMouse)
             cheese.hp -= strength;
     }
