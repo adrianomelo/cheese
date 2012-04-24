@@ -8,10 +8,14 @@ Item {
     property bool paused: false
     property Item focusedItem
     property int currentLevel: 0
+    property Item currentCheese
+    property Item topCheese
 
     signal gameOver()
 
     onGameOver: Engine.reset();
+
+    onTopCheeseChanged: explosion.burst();
 
     function init() {
         Engine.nextLevel();
@@ -45,6 +49,19 @@ Item {
             y: focusedItem ? (-focusedItem.y + 550) : 0
             Behavior on x { NumberAnimation { duration: 500 } }
             Behavior on y { NumberAnimation { duration: 500 } }
+        }
+
+        BurstChesseParticles {
+            id: explosion
+            anchors {
+                left: topCheese ? topCheese.left : undefined
+                right: topCheese ? topCheese.right : undefined
+                bottom: topCheese ? topCheese.top : undefined
+                margins: 30
+                bottomMargin: -30
+            }
+            height: 40
+            z: 2
         }
     }
 }
