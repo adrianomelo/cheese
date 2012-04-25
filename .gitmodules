@@ -1,0 +1,3 @@
+[submodule "presentation/quickshow"]
+	path = presentation/quickshow
+	url = git://code.openbossa.org/projects/quickshow.git
