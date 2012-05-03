@@ -1,27 +1,35 @@
 import QtQuick 1.1
+import Expresso 1.0
 
-Sprite {
-    width: 80
-    height: 80
-    spriteState: 'normal'
-    spriteStates: {'normal': ["red", "tomato"]}
+Enemy {
+    hp: 5
+    strength: 1
 
-    property Item cheese
-    property int hp: 5
-    property int strength: 1
+    width: 89
+    height: 133
 
-    onTicked: {
-        if (!mouse.containsMouse)
-            cheese.hp -= strength;
-    }
-
-    MouseArea {
-        id: mouse
-        hoverEnabled: false
-        anchors.fill: parent
-
-        onClicked: {
-            hp -= cheese.player.strength;
+    spriteStates: [
+        SpriteState {
+            id: normalState
+            frameCount: 1
+            frameWidth: 89
+            frameHeight: 133
+            source: Qt.resolvedUrl("../images/mouse1.png")
+        },
+        SpriteState {
+            id: damagedState
+            frameCount: 2
+            frameWidth: 89
+            frameHeight: 133
+            loopCount: 3
+            frameRate: 0.5
+            nextState: normalState
+            source: Qt.resolvedUrl("../images/mouse2.png")
         }
+    ]
+
+    onClicked: {
+        if (spriteState == normalState)
+            spriteState = damagedState;
     }
 }

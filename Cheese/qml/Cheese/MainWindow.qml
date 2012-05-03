@@ -1,6 +1,7 @@
 import QtQuick 1.1
+import Expresso 1.0
 
-Item {
+SpriteScene {
     id: root
 
     state: "menu"

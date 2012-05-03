@@ -76,7 +76,7 @@ function tick() {
     for (var i in enemies) {
         var enemy = enemies[i];
         if (enemy.hp > 0) {
-            enemy.tick();
+            cheese.hp -= enemy.strength;
         } else {
             enemies.splice(i, 1); // Remove
             enemy.destroy();
@@ -88,7 +88,8 @@ function onEvent(event) {
     if ('enemy' in event) {
         var enemy = enemySet[event.enemy].createObject(holes[event.hole]);
         enemies.push(enemy);
-        enemy.cheese = cheese;
+        enemy.playerStrength = cheese.player.strength;
     }
 }
+
 
