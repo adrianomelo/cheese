@@ -1,67 +1,105 @@
 import QtQuick 1.1
-import "engine.js" as Engine
+import Box2D 1.0
+import "gamescene.js" as Game
 
-Item {
-    id: gameScene
+Flickable {
+    id: b2scene
 
-    property alias running: timer.running
-    property bool paused: false
-    property Item focusedItem
-    property int currentLevel: 0
-    property Item currentCheese
-    property Item topCheese
-
-    signal gameOver()
-
-    onGameOver: Engine.reset();
-
-    onTopCheeseChanged: explosion.burst();
-
-    function init() {
-        Engine.nextLevel();
+    property int cheeseCount: 0
+    property int currentLevel: 1
+    property bool running: true
+    property bool paused: !running
+    
+    signal gameOver();
+    
+    function init()
+    {
+        Game.nextLevel(b2scene, world);
     }
 
-    function focusOn(item) {
-        focusedItem = item;
-    }
-
-    Timer {
-        id: timer
-        interval: 500
-        running: false
-        repeat: true
-        onTriggered: Engine.tick();
-    }
-
+    contentHeight: 10000
+    interactive: false
+    height: 700
+    width: 480
+ 
     Landscape {
         anchors.fill: parent
-        xOffset: viewport.x
-        yOffset: viewport.y
+        xOffset: contentX
+        yOffset: contentY
     }
 
-    Item {
+    World {
         id: world
-        width: gameScene.width
-        height: gameScene.height
-        transform: Translate {
-            id: viewport
-            x: paused ? -gameScene.width : 0
-            y: focusedItem ? (-focusedItem.y + 550) : 0
-            Behavior on x { NumberAnimation { duration: 500 } }
-            Behavior on y { NumberAnimation { duration: 500 } }
+
+        width: parent.width
+        height: parent.height
+        running: b2scene.running
+
+        Wall {
+            width: parent.width
+            height: 1
+            y: parent.height - height
         }
 
-        BurstChesseParticles {
-            id: explosion
-            anchors {
-                left: topCheese ? topCheese.left : undefined
-                right: topCheese ? topCheese.right : undefined
-                bottom: topCheese ? topCheese.top : undefined
-                margins: 30
-                bottomMargin: -30
-            }
-            height: 40
-            z: 2
+        Wall {
+            width: 1
+            height: parent.height
         }
+
+        Wall {
+            width: 1
+            height: parent.height
+            x: parent.width - 1
+        }
+
+        DebugDraw {
+            world: world
+            anchors.fill: world
+            visible: false
+        }
+    }
+
+    Component {
+        id: cheeseUnit
+
+        Cheese {
+            id: cc
+            width: 480
+            height: 469
+            scale: 1
+            
+            onTimeUp: {
+                Game.nextLevel(b2scene, world);
+            }
+
+            onGameOver: b2scene.gameOver();
+        }
+    }
+
+    Behavior on contentY {
+        PropertyAnimation {
+            duration: 1000
+        }
+    }
+    
+    onCheeseCountChanged: {
+        if (cheeseCount >= 2)
+            contentY = Game.lastCheese.y - height + Game.lastCheese.height / 2
+        else
+            contentY = contentHeight - height;
+    }
+
+    onRunningChanged: {
+        if (Game.currentCheese)
+            Game.currentCheese.running = running;
+    }
+
+    onGameOver: {
+        Game.restart(b2scene, world);
+    }
+
+    Component.onCompleted: {
+        contentY = contentHeight - height;
     }
 }
+
