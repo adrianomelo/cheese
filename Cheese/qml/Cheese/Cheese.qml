@@ -5,12 +5,15 @@ import "cheese.js" as Cheese
 CheeseBody {
     id: cheese
 
+    property alias holes: holes
+    property alias enemies: enemies
+
     property bool running: false
     property int topBaseline: 0
     property int hp: 0
     property int level: 0
     property QtObject player: QtObject {
-        property int strength: 5
+        property int strength: 1
     }
 
     signal timeUp()
@@ -18,6 +21,16 @@ CheeseBody {
     
     function init(level) {
         Cheese.init(level);
+    }
+
+    Item {
+        id: holes
+        anchors.fill: parent
+    }
+
+    Item {
+        id: enemies
+        anchors.fill: parent
     }
 
     Component {

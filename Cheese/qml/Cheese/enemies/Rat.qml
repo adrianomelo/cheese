@@ -2,8 +2,11 @@ import QtQuick 1.1
 import Expresso 1.0
 
 Enemy {
-    hp: 5
+    id: enemy
+
+    hp: 1
     strength: 1
+    yCenter: 90
 
     width: 89
     height: 133
@@ -21,12 +24,26 @@ Enemy {
             frameCount: 2
             frameWidth: 89
             frameHeight: 133
-            loopCount: 3
+            loopCount: 2
             frameRate: 0.5
-            nextState: normalState
+            nextState: deadState
+            source: Qt.resolvedUrl("../images/mouse2.png")
+        },
+        SpriteState {
+            id: deadState
+            frameCount: 1
+            frameWidth: 89
+            frameHeight: 133
+            loopCount: 1
             source: Qt.resolvedUrl("../images/mouse2.png")
         }
+
     ]
+
+    onSpriteStateChanged: {
+        if (spriteState == deadState)
+            enemy.destroy();
+    }
 
     onClicked: {
         if (spriteState == normalState)
