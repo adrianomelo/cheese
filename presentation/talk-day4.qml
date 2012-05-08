@@ -133,7 +133,31 @@ SpriteScene {
     RegularSlide {
         title: "Física"
         content: [
+            "Mecânica",
+            "Corpos",
+            "Massa",
+            "Forças",
+            "Gravidade"
+        ]
+    }
+
+    RegularSlide {
+        title: "Física"
+        content: [
+            "Impulso",
+            "Colisão",
+            "Filtros",
+            "Layers",
+        ]
+    }
+
+    RegularSlide {
+        title: "Física"
+        content: [
+            "Mainloop",
+            "Design orientado a eventos",
             "Performance vs. Acurácia",
+            "Manipula os objetos de acordo com as leis da física"
         ]
     }
 
