@@ -334,7 +334,7 @@ Body {
     }
 
     DividerSlide {
-        title: "Partículas"
+        centeredText: "Partículas"
     }
 
     RegularSlide {
