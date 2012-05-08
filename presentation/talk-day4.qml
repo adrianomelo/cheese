@@ -196,6 +196,39 @@ SpriteScene {
         ]
     }
 
+    RegularSlide {
+        title: "Prismatic Joint"
+        content: [
+            // "A prismatic joint allows for relative translation of two bodies along a specified axis."
+            "O Joint Prismatic permite o translado relativo entre dois corpos a partir de um eixo."
+        ]
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "resources/prismaticjoint.png"
+        }
+    }
+
+    RegularSlide {
+        title: "Revolute Joint"
+        content: [
+            "Força dois corpos a compartilhar um ponto âncora. "
+        ]
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "resources/revolutejoint.png"
+        }
+    }
+
+    RegularSlide {
+        title: "Distance Joint"
+        content: [
+            "Força dois corpos a manter uma distância sempre constante."
+        ]
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "resources/distancejoint.png"
+        }
+    }
     DividerSlide {
         centeredText: "QML Box2D API"
     }
@@ -287,49 +320,6 @@ Body {
             "restitution",
             "Outros: sensor, categories, collidesWith, groupIndex"
         ]
-    }
-
-    RegularSlide {
-        title: "Tipos de Joint"
-        content: [
-            "PrismaticJoint",
-            "RevoluteJoint",
-            "DistanceJoint"
-        ]
-    }
-
-    RegularSlide {
-        title: "Prismatic Joint"
-        content: [
-            // "A prismatic joint allows for relative translation of two bodies along a specified axis."
-            "O Joint Prismatic permite o translado relativo entre dois corpos a partir de um eixo."
-        ]
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: "resources/prismaticjoint.png"
-        }
-    }
-
-    RegularSlide {
-        title: "Revolute Joint"
-        content: [
-            "Força dois corpos a compartilhar um ponto âncora. "
-        ]
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: "resources/revolutejoint.png"
-        }
-    }
-
-    RegularSlide {
-        title: "Distance Joint"
-        content: [
-            "Força dois corpos a manter uma distância sempre constante."
-        ]
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: "resources/distancejoint.png"
-        }
     }
 
     DividerSlide {
