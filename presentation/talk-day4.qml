@@ -333,6 +333,24 @@ Body {
     }
 
     DividerSlide {
+        title: "Partículas"
+    }
+
+    RegularSlide {
+        title: "Partículas"
+        Grid {
+            anchors.centerIn: parent
+            columns: 3
+            spacing: 30
+            Image { source: "resources/snow-particle.png" }
+            Image { source: "resources/fire-particle.jpg" }
+            Image { source: "resources/smoke-particle.jpg" }
+            Image { source: "resources/explosion-particle.jpg" }
+            Image { source: "resources/water-particle.jpg"; width: implicitWidth / 2; height: implicitHeight / 2 }
+        }
+    }
+
+    DividerSlide {
         Image {
             anchors.centerIn: parent
             source: "resources/nokiapromo.jpg"
