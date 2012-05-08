@@ -332,11 +332,10 @@ Body {
     }
 
     DividerSlide {
-        centeredText: "Perguntas?"
-    }
-
-    DividerSlide {
-        centeredText: "Idéias?"
+        Image {
+            anchors.centerIn: parent
+            source: "resources/nokiapromo.jpg"
+        }
     }
 
     RegularSlide {
