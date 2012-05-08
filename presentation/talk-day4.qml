@@ -348,7 +348,8 @@ Body {
             "density",
             "friction",
             "restitution",
-            "Outros: sensor, categories, collidesWith, groupIndex"
+            "Outros: sensor, categories, collidesWith, groupIndex",
+            "Sinais: beginContact, contactChanged, endContact"
         ]
     }
 
