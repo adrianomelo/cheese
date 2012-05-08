@@ -114,16 +114,25 @@ SpriteScene {
 
     RegularSlide {
         title: "Física"
-        content: [
-        ]
+        Loader {
+            anchors.centerIn: parent
+            source: visible ? "monera/monera.qml" : ""
+        }
     }
 
     RegularSlide {
         title: "Física"
         Loader {
             anchors.centerIn: parent
-            source: "monera/monera.qml"
+            source: visible ? "demolition/demolition.qml" : ""
         }
+    }
+
+    RegularSlide {
+        title: "Física"
+        content: [
+            "Performance vs. Acurácia",
+        ]
     }
 
     DividerSlide {
