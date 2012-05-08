@@ -220,7 +220,7 @@ SpriteScene {
     }
 
     RegularSlide {
-        title: "joint"
+        title: "Joint"
         content: [
             //"This is a constraint used to hold two or more bodies together",
             "Constraint usada para unir corpos (bodies)",
@@ -264,6 +264,7 @@ SpriteScene {
             source: "resources/distancejoint.png"
         }
     }
+
     DividerSlide {
         centeredText: "QML Box2D API"
     }
