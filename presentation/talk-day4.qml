@@ -273,6 +273,19 @@ SpriteScene {
     }
 
     RegularSlide {
+        id: gameSlide
+        title: "Cheese!"
+        MouseArea {
+            anchors.fill: game
+        }
+        Loader {
+            id: game
+            anchors.centerIn: parent
+            source: visible ? "../Cheese/qml/Cheese/main.qml" : ""
+        }
+    }
+
+    RegularSlide {
         title: "No cheese..."
         CodeSection {
             anchors.fill: parent
