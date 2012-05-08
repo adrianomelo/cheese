@@ -19,6 +19,8 @@ function nextLevel(scene, world)
     currentCheese.init(scene.currentLevel);
     currentCheese.running = true;
 
+    currentCheese.z = 100 -scene.cheeseCount;
+
     scene.cheeseCount = scene.cheeseCount + 1;
 }
 
