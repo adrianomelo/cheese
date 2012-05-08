@@ -4,13 +4,7 @@ import Qt.labs.particles 1.0
 Item {
 
     function burst() {
-        timer.start();
-    }
-
-    Timer {
-        id: timer
-        interval: 700
-        onTriggered: particles.burst(80);
+        particles.burst(80);
     }
 
     Particles {

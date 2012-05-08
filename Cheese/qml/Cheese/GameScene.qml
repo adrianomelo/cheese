@@ -73,7 +73,17 @@ Flickable {
             }
 
             onGameOver: b2scene.gameOver();
+
+            onEmitParticles: {
+                particles.y = y + height;
+                particles.x = x + width/2;
+                particles.burst();
+            }
         }
+    }
+
+    BurstChesseParticles {
+        id: particles
     }
 
     Behavior on contentY {

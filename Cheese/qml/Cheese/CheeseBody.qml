@@ -5,6 +5,9 @@ Body {
     rotation: Math.random() * 10 - 5
     bodyType: running ? Body.Dynamic : Body.Static
 
+    property bool particlesEmitted: false
+    signal emitParticles()
+
     Image {
         source: "images/cheese.png"
         smooth: true
@@ -24,5 +27,12 @@ Body {
             Qt.point(474.0 * scale, 50.0 * scale + 40),
             Qt.point(230.0 * scale, 4.0 * scale + 40)
         ]
+
+        onBeginContact: {
+            if (other.vertices && !particlesEmitted) {
+                emitParticles();
+                particlesEmitted = true;
+            }
+        }
     }
 }
