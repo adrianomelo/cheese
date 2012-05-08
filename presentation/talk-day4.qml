@@ -190,10 +190,146 @@ SpriteScene {
             //"This is a constraint used to hold two or more bodies together",
             "Constraint usada para unir corpos (bodies)",
             //"Box2D supports several joints types: revolute, prismatic, distance, and more.",
-            "Box2d suporta os tipos revolute, prismatic e distance.",
+            "QML Box2d suporta os tipos revolute, prismatic e distance.",
             //"Some joints may have limits and motors."
             "Alguns dos joints podem ter limites e motores."
         ]
+    }
+
+    DividerSlide {
+        centeredText: "QML Box2D API"
+    }
+
+    RegularSlide {
+        title: "World API"
+        content: [
+            "running: se está rodando",
+            "gravity: gravidade do mundo",
+            "Outros: positionIterations, velocityIterations, frameTime, timeStep"
+        ]
+    }
+
+    RegularSlide {
+        title: "No cheese..."
+        CodeSection {
+            anchors.fill: parent
+            text: '// GameScene.qml
+import QtQuick 1.1
+import Box2D 1.0
+import "gamescene.js" as Game
+
+Flickable {
+    id: b2scene
+    // ...
+    World {
+        id: world // Os queijos, inimigos e buracos são adicionados ao world posteriormente..
+
+        width: parent.width
+        height: parent.height
+        running: b2scene.running
+
+        Wall {
+            width: parent.width
+            height: 1
+            y: parent.height - height
+        }
+
+        // ...
+'
+        }
+    }
+
+    RegularSlide {
+        title: "Body API"
+        content: [
+            "bodyType: define se ele é to tipo Static, Kinematic ou Dynamic",
+            "fixtures: fixture que o define",
+            "Outros: linearDamping, angularDamping, bullet, sleepingAllowed, fixedRotation, active, linearVelocity"
+        ]
+    }
+
+    RegularSlide {
+        title: "No Cheese.."
+        CodeSection {
+            anchors.fill: parent
+            text: 'import QtQuick 1.1
+import Box2D 1.0
+
+Body {
+    rotation: Math.random() * 10 - 5
+    bodyType: running ? Body.Dynamic : Body.Static
+
+    Image {source: "images/cheese.png"; smooth: true}
+
+    fixtures: Polygon {
+        density: 1
+        friction: 0.3
+        restitution: 0.3
+        scale: parent.scale
+        vertices: [
+            Qt.point(13.0 * scale, 55.0 * scale + 40),
+            Qt.point(7.0 * scale, 442.0 * scale),
+            Qt.point(250.0 * scale, 465.0 * scale),
+            Qt.point(466.0 * scale, 432.0 * scale),
+            Qt.point(474.0 * scale, 50.0 * scale + 40),
+            Qt.point(230.0 * scale, 4.0 * scale + 40)
+        ]
+    }
+}'
+        }
+    }
+
+    RegularSlide {
+        title: "Fixture API"
+        content: [
+            "density",
+            "friction",
+            "restitution",
+            "Outros: sensor, categories, collidesWith, groupIndex"
+        ]
+    }
+
+    RegularSlide {
+        title: "Tipos de Joint"
+        content: [
+            "PrismaticJoint",
+            "RevoluteJoint",
+            "DistanceJoint"
+        ]
+    }
+
+    RegularSlide {
+        title: "Prismatic Joint"
+        content: [
+            // "A prismatic joint allows for relative translation of two bodies along a specified axis."
+            "O Joint Prismatic permite o translado relativo entre dois corpos a partir de um eixo."
+        ]
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "resources/prismaticjoint.png"
+        }
+    }
+
+    RegularSlide {
+        title: "Revolute Joint"
+        content: [
+            "Força dois corpos a compartilhar um ponto âncora. "
+        ]
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "resources/revolutejoint.png"
+        }
+    }
+
+    RegularSlide {
+        title: "Distance Joint"
+        content: [
+            "Força dois corpos a manter uma distância sempre constante."
+        ]
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "resources/distancejoint.png"
+        }
     }
 
     DividerSlide {
