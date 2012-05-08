@@ -44,7 +44,7 @@ Presentation {
         title: "Sprite"
         CodeSection {
             anchors.left: parent.left
-            width: parent.width / 2
+            width: parent.width / 1.3
             text: 'import QtQuick 1.1
 import Expresso 1.0
 
@@ -64,7 +64,8 @@ SpriteScene {
                 frameWidth: 122
                 frameHeight: 130
                 frameRate: 0.2
-                source: Qt.resolvedUrl("resources/walking_sprite.png")
+                source: Qt.resolvedUrl(
+                    "resources/walking_sprite.png")
             }
         ]
     }
