@@ -85,9 +85,9 @@ SpriteScene {
     RegularSlide {
         title: "Sprite"
         content: [
-            "spriteStates: conjunto de estados possíveis para o sprite",
-            "spriteState: estado atual do sprite",
-            "flipHorizontaly: define se o sprite vai estar invertido horizontalmente"
+            "spriteStates: conjunto de estados possíveis",
+            "spriteState: estado atual",
+            "flipHorizontaly: invertido horizontalmente"
         ]
     }
 
@@ -177,44 +177,43 @@ SpriteScene {
 
     RegularSlide {
         title: "Mundo (World)"
-        //content: ["A physics world is a collection of bodies, fixtures, and constraints that interact together"]
-        content: ["Um mundo é uma coleção de corpos, fixtures e articulações que interagem entre si."]
-    }
-
-    RegularSlide {
-        title: "Corpo (Body)"
-        //content: ["A chunk of matter that  is so strong that the distance between any two bits of matter on the chunk is constant. They are hard like a diamond."]
-        content: ["Uma porção de matéria que é tão forte que a distância entre dois bits de matéria é sempre constante. São duros como um diamante."]
-    }
-
-    RegularSlide {
-        title: "Fixture"
-        //content: ["A fixture binds a shape to a body and adds material properties  such as density, friction, and restitution."]
-        content: ["Uma Fixture atribui uma forma (shape) ao corpo (Body) e propriedades materiais como densidade (density), atrito (friction) e restituição (restitution)."]
-    }
-
-    RegularSlide {
-        title: "Propriedades do fixture"
         content: [
-            //"density: used to compute the mass property of the parent body. The density can be zero or positive.",
-            "density: usado para computar a massa do corpo (body) que é seu pai. A densidade pode ser zero ou positiva.",
-            //"friction: used to make objects slide along each other realistically. Box2D supports static and dynamic friction, but uses the same parameter for both.", // Coulomb friction
-            "friction: usado para fazer os objetos deslizarem uns sobre os outros de forma realística. Box2D suporta atrito estático e dinâmico, mas usa o mesmo parâmetro para os dois.",
-            //"restitution: used to make objects bounce. A value of zero is an inelastic collision and a value of one is a perfectly elastic collision."
-            "restitution: usado para fazer os objetos pularem. O valor de zero é uma colisão inelástica e o valor de um é uma colisão perfeitamente elástica."
+            "corpos",
+            "fixtures",
+            "articulações"
         ]
     }
 
     RegularSlide {
+        title: "Corpo (Body)"
+        content: [
+            "Uma porção de matéria que é tão forte que a distância entre dois bits de matéria é sempre constante."
+        ]
+    }
+
+    RegularSlide {
+        title: "Fixture"
+        content: [
+            "forma do Body",
+            "propriedades: densidade (density), atrito (friction) e restituição (restitution)."
+        ]
+    }
+
+    /*RegularSlide {
+        title: "Propriedades do fixture"
+        content: [
+            "density: usado para computar a massa do corpo (body) que é seu pai.",
+            "friction: usado para fazer os objetos deslizarem uns sobre os outros de forma realística.",
+            "restitution: usado para fazer os objetos pularem. O valor de zero é uma colisão inelástica e o valor de um é uma colisão perfeitamente elástica."
+        ]
+    }*/
+
+    RegularSlide {
         title: "Tipos de formas (shapes)"
         content: [
-            //"circle: have a position and radius.",
             "circle: possuem uma posição e um raio.",
-            //"polygon: are solid convex polygons.",
             "polygon: são polígonos.",
-            //"edge: are line segments.",
             "edge: são segmentos de linha.",
-            //"chain: provides an efficient way to connect may edges together to construct you static game worlds."
             "chain: maneira eficiente de conectar edges para construir os mundos do jogo."
         ]
     }
@@ -222,20 +221,15 @@ SpriteScene {
     RegularSlide {
         title: "Joint"
         content: [
-            //"This is a constraint used to hold two or more bodies together",
-            "Constraint usada para unir corpos (bodies)",
-            //"Box2D supports several joints types: revolute, prismatic, distance, and more.",
-            "QML Box2d suporta os tipos revolute, prismatic e distance.",
-            //"Some joints may have limits and motors."
-            "Alguns dos joints podem ter limites e motores."
+            "Constraint usada para unir corpos",
+            "QML Box2d suporta os tipos revolute, prismatic e distance."
         ]
     }
 
     RegularSlide {
-        title: "Prismatic Joint"
+        title: "Prismatic"
         content: [
-            // "A prismatic joint allows for relative translation of two bodies along a specified axis."
-            "O Joint Prismatic permite o translado relativo entre dois corpos a partir de um eixo."
+            "permite o translado relativo entre dois corpos a partir de um eixo."
         ]
         Image {
             anchors.horizontalCenter: parent.horizontalCenter
