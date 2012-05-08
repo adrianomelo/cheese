@@ -211,10 +211,10 @@ SpriteScene {
     RegularSlide {
         title: "Tipos de formas (shapes)"
         content: [
-            "circle: possuem uma posição e um raio.",
-            "polygon: são polígonos.",
-            "edge: são segmentos de linha.",
-            "chain: maneira eficiente de conectar edges para construir os mundos do jogo."
+            "circle: centro e um raio",
+            "polygon: polígonos convexos definidos no sentido horário",
+            "edge: são segmentos de linha",
+            "chain: maneira eficiente de conectar edges para construir os mundos do jogo"
         ]
     }
 
