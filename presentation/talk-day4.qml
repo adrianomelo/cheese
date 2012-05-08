@@ -24,7 +24,8 @@ Presentation {
             "Colisão",
             "Partículas",
             "Shaders",
-            "Testando no Device"
+            "Utilizando Módulos",
+            "Deploy no Device"
         ]
     }
 
@@ -414,6 +415,152 @@ Body {
             anchors.centerIn: parent
             source: visible ? "particles/Shader.qml" : ""
         }
+    }
+
+    DividerSlide {
+        centeredText: "Utilizando Módulos com Plugins"
+    }
+
+    RegularSlide {
+        title: "Utilizando Módulos com Plugins"
+        content: [
+            "Componentes definidos em C++",
+            "Sintaxe: import ModuleName Version",
+            "ModuleName é o nome do diretório no repositório",
+            "Repositório padrão: [Qt dir]\\imports",
+        ]
+    }
+
+    RegularSlide {
+        title: "Estrutura do diretório ModuleName"
+        content: [
+            "Como qualquer módulo, pode ter código QML",
+            "[plugin].[dll|so]: binário do plugin",
+            "qmldir: mapeia os tipos nas implementações considerando versão",
+            "plugins.qmltypes (Opcional): mapeamento dos tipos do plugin para o QtCreator"
+        ]
+    }
+
+    RegularSlide {
+        title: "Instalação do QML Box2D"
+        content: [
+            "Baixar e descompactar o pacote em http://wiki.qtlabs.org.br/_media/trainning/\ngames/qmlbox2dworkspace.zip",
+            "Copiar o diretório Box2D em QMLBox2DWorkspace\\Dist\\Lib\\[Target] para o repositório de plugins do [Target]",
+            "Desktop: C:\\QtSDK\\Desktop\\Qt\\4.8.1\\msvc2008\\imports",
+            "Simulator: C:\\QtSDK\\Simulator\\Qt\\msvc2008\\imports",
+            "Symbian: C:\\QtSDK\\Symbian\\SDKs\\SymbianSR1Qt474\\\nepoc32\\data\\z\\resources\\qt\\imports"
+        ]
+    }
+
+    RegularSlide {
+        title: "Instalação do QML Box2D"
+        content: [
+            "Os devices já estão com QML Box2D instalados",
+            "Tutorial detalhado: http://wiki.qtlabs.org.br/trainning/games/qmlbox2d_setup"
+        ]
+    }
+
+    RegularSlide {
+        title: "Instalação do Expresso"
+        content: [
+            "Baixar e descompactar o pacote em http://wiki.qtlabs.org.br/_media/trainning/\ngames/expressoworkspace.zip",
+            "Mesmo processo do QML Box2D"
+        ]
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D"
+        content: [
+            "Abra o arquivo Demolition.pro em Examples\\Demolition",
+            "Selecione os targets"
+        ]
+
+        Image {
+            source: "resources/select-target.png"
+            scale: 0.7
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+        }
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D (Desktop)"
+        content: [
+            "Selecione o target Desktop (Debug)",
+
+        ]
+
+        Image {
+            source: "resources/target-desktop.png"
+            scale: 0.8
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+        }
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D (Desktop)"
+        content: [
+            "Compile (Ctrl+B)",
+            "Execute (Ctrl+R)",
+        ]
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D (Desktop)"
+        Image {
+            source: "resources/demolition-desktop.png"
+            anchors.centerIn: parent
+        }
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D (Simulator)"
+        content: [
+            "Repita os mesmos passos para o Desktop",
+        ]
+
+        Image {
+            source: "resources/demolition-simulator.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+        }
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D (Simulator)"
+        content: [
+            "Alterando a orientação",
+        ]
+
+        Image {
+            source: "resources/demolition-simulator-landscape.png"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
+
+    DividerSlide {
+        centeredText: "Deploy no Device"
+    }
+
+    RegularSlide {
+        title: "Exemplo com QML Box2D (Symbian)"
+        content: [
+            "Conecte o celular",
+            "Repita os passos dos targets anteriores",
+            "Execute no celular Rnd Tools -> CODA"
+        ]
+
+        Image {
+            source: "resources/waiting-coda.png"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
+
+    DividerSlide {
+        centeredText: "Perguntas?"
     }
 
     DividerSlide {
