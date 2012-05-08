@@ -338,6 +338,22 @@ Body {
 
     RegularSlide {
         title: "Partículas"
+        Loader {
+            anchors.centerIn: parent
+            source: visible ? "particles/ParticlesExample.qml" : ""
+        }
+    }
+
+    RegularSlide {
+        title: "Partículas"
+        Loader {
+            anchors.centerIn: parent
+            source: visible ? "particles/ParticlesExampleClick.qml" : ""
+        }
+    }
+
+    RegularSlide {
+        title: "Partículas"
         Grid {
             anchors.centerIn: parent
             columns: 3

@@ -11,13 +11,15 @@ Rectangle {
         y: parent.height * 0.8
         width: 1
         height: 1
-        source: "resources/star.png"
+        source: "star.png"
         lifeSpan: 5000
         count: 200
         angle: 270
         angleDeviation: 45
+        emissionVariance: 30
         velocity: 50
-        velocityDeviation: 30
+        velocityDeviation: 15
+
         ParticleMotionGravity {
             yattractor: 1000
             xattractor: 0
