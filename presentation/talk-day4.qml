@@ -109,6 +109,24 @@ SpriteScene {
     }
 
     DividerSlide {
+        centeredText: "Física"
+    }
+
+    RegularSlide {
+        title: "Física"
+        content: [
+        ]
+    }
+
+    RegularSlide {
+        title: "Física"
+        Loader {
+            anchors.centerIn: parent
+            source: "monera/monera.qml"
+        }
+    }
+
+    DividerSlide {
         centeredText: "QML Box2D"
     }
 
