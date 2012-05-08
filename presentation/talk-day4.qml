@@ -23,6 +23,7 @@ Presentation {
             "QML Box2D",
             "Colisão",
             "Partículas",
+            "Shaders",
             "Testando no Device"
         ]
     }
@@ -363,6 +364,22 @@ Body {
             Image { source: "resources/smoke-particle.jpg" }
             Image { source: "resources/explosion-particle.jpg" }
             Image { source: "resources/water-particle.jpg"; width: implicitWidth / 2; height: implicitHeight / 2 }
+        }
+    }
+
+    RegularSlide {
+        title: "Partículas"
+        content: [
+            "Particles 1.0",
+            "Particles 2.0"
+        ]
+    }
+
+    RegularSlide {
+        title: "Shaders"
+        Loader {
+            anchors.centerIn: parent
+            source: visible ? "particles/Shader.qml" : ""
         }
     }
 
