@@ -82,7 +82,7 @@ SpriteScene {
     }
 
     RegularSlide {
-        title: "API: elemento Sprite"
+        title: "Sprite"
         content: [
             "spriteStates: conjunto de estados possíveis para o sprite",
             "spriteState: estado atual do sprite",
@@ -91,7 +91,7 @@ SpriteScene {
     }
 
     RegularSlide {
-        title: "API: elemento SpriteState"
+        title: "SpriteState"
         content: [
             "source: caminho para a imagem",
             "loopCount: quantas vezes a lista de sprites vai ser exibida",
@@ -100,7 +100,7 @@ SpriteScene {
     }
 
     RegularSlide {
-        title: "API: elemento SpriteState"
+        title: "SpriteState"
         content: [
             "frameCount: define quantos sprites estão na imagem",
             "frameWidth: largura de um sprite",
