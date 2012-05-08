@@ -23,6 +23,12 @@ CheeseBody {
         Cheese.init(level);
     }
 
+    function freeMemory()
+    {
+        for (var i=0; i < holes.children.length; i++)
+            holes.children[i].destroy();
+    }
+
     Item {
         id: holes
         anchors.fill: parent

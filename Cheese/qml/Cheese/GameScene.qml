@@ -79,6 +79,14 @@ Flickable {
                 particles.x = x + width/2;
                 particles.burst();
             }
+
+            Connections {
+                target: b2scene
+                onCheeseCountChanged: {
+                    if (cc.y > (b2scene.contentY + b2scene.height)) // is not visible
+                        cc.freeMemory()
+                }
+            }
         }
     }
 
