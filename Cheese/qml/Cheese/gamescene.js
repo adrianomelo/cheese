@@ -15,7 +15,7 @@ function nextLevel(scene, world)
 
     currentCheese = cheeseUnit.createObject(world);
     currentCheese.x = (scene.width - currentCheese.width) * Math.random();
-    currentCheese.y = scene.contentY - currentCheese.height;
+    currentCheese.y = scene.contentY - currentCheese.height * 2;
 
     currentCheese.init(scene.currentLevel);
     currentCheese.running = true;
