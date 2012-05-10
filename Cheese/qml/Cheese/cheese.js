@@ -13,10 +13,15 @@ function readLevelData(level, callback) {
     xhr.open("GET", "levels/level" + level + ".json");
     xhr.send();
     xhr.onreadystatechange = function () {
-        if (xhr.readyState != 4 && xhr.responseText == "")
-            return;
-
-        callback(JSON.parse(xhr.responseText));
+        if (xhr.readyState == xhr.DONE) {
+            if (xhr.responseText != "") {
+                callback(JSON.parse(xhr.responseText));
+            } else {
+                cheese.running = false;
+                cheese.visible = false;
+                cheese.win();
+            }
+        }
     }
 }
 
@@ -34,6 +39,7 @@ function init(level) {
         timelineIndex = 0;
         cheese.hp = levelData.hp;
     });
+
 }
 
 function reset() {

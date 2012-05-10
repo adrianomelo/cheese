@@ -7,6 +7,7 @@ function nextLevel(scene, world)
     if (!scene)
         return;
     
+    scene.currentLevel = scene.currentLevel + 1;
     lastCheese = currentCheese;
     
     if (lastCheese)
@@ -20,20 +21,18 @@ function nextLevel(scene, world)
     currentCheese.running = true;
 
     currentCheese.z = 100 -scene.cheeseCount;
-
     scene.cheeseCount = scene.cheeseCount + 1;
-    scene.currentLevel = scene.cheeseCount;
 }
 
 function restart(scene, world)
 {
     for (var i=0; i < world.children.length; i++) {
-        if (world.children[i].hp)
+        if (world.children[i].player)
             world.children[i].destroy()
     }
 
     currentCheese = null;
     lastCheese = null;
     scene.cheeseCount = 0;
-    scene.currentLevel = 1;
+    scene.currentLevel = 0;
 }

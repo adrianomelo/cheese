@@ -6,14 +6,16 @@ Flickable {
     id: b2scene
 
     property int cheeseCount: 0
-    property int currentLevel: 1
+    property int currentLevel: 0
     property bool running: true
     property bool paused: !running
     
-    signal gameOver();
+    signal gameOver()
+    signal win()
     
     function init()
     {
+        Game.restart(b2scene, world);
         Game.nextLevel(b2scene, world);
     }
 
@@ -73,6 +75,7 @@ Flickable {
             }
 
             onGameOver: b2scene.gameOver();
+            onWin: b2scene.win();
 
             onEmitParticles: {
                 particles.y = y + height;

@@ -18,6 +18,7 @@ CheeseBody {
 
     signal timeUp()
     signal gameOver()
+    signal win()
     
     function init(level) {
         Cheese.init(level);

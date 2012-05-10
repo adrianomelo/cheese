@@ -25,7 +25,12 @@ SpriteScene {
         State {
             name: "game-over"
             PropertyChanges { target: gameOverLabel; opacity: 1 }
+        },
+        State {
+            name: "win"
+            PropertyChanges { target: winLabel; opacity: 1 }
         }
+
     ]
 
     transitions: [
@@ -46,6 +51,10 @@ SpriteScene {
         running: false
 
         onGameOver: root.state = "game-over"
+        onWin: {
+            running = false;
+            root.state = "win";
+        }
 
         Behavior on opacity { NumberAnimation { duration: 500 } }
     }
@@ -99,6 +108,14 @@ SpriteScene {
         id: gameOverLabel
         anchors.centerIn: parent
         opacity: 0
+        onClicked: root.state = "menu"
+    }
+
+    GameOverLabel {
+        id: winLabel
+        anchors.centerIn: parent
+        opacity: 0
+        text: "You Win!!"
         onClicked: root.state = "menu"
     }
 }
