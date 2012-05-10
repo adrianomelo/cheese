@@ -24,12 +24,6 @@ Flickable {
     height: 700
     width: 480
  
-    Landscape {
-        anchors.fill: parent
-        xOffset: contentX
-        yOffset: contentY
-    }
-
     World {
         id: world
 

@@ -43,11 +43,17 @@ SpriteScene {
             NumberAnimation { target: start; property: "anchors.rightMargin"; to: 32 }
         }
     ]
+    
+    Landscape {
+        anchors.fill: parent
+    }
 
     GameScene {
         id: game
-        anchors.fill: parent
-        opacity: 1
+        width: parent.width
+        height: parent.height
+        x: paused ? -width : 0
+        opacity: paused ? 0.1 : 1
         running: false
 
         onGameOver: root.state = "game-over"
@@ -57,6 +63,7 @@ SpriteScene {
         }
 
         Behavior on opacity { NumberAnimation { duration: 500 } }
+        Behavior on x { NumberAnimation { duration: 1000 } }
     }
 
     StartButton {
